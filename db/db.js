@@ -1,6 +1,9 @@
 
+const path = require('path');
+const mysql = require('mysql');
 const dotenv = require('dotenv');
-dotenv.config();
+
+dotenv.config({ path: path.join('/home/muhammadobaid/Desktop/JawwadBhai/backend', '.env') });
 
 
 var databasename = process.env.databasename;
@@ -10,15 +13,19 @@ var password = process.env.password;
 
 
 
-const dbcrud = function(){
+var knex = require('knex')({
+	client: 'mysql',
+	debug: true,
+	connection:{
 
-/* Perform some actions
+	host: connectionurl,
+	user: username,
+	password: password,
+	database: databasename,
+	port: 3306
+	}
+});
 
-*/
 
 
-};
-
-
-
-module.exports = dbcrud;
+module.exports = {knex};
